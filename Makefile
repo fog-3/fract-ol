@@ -9,6 +9,12 @@ MLX_PATH = minilibx-linux/
 MLX_NAME = libmlx.a
 MLX = $(MLX_PATH)$(MLX_NAME)
 
+
+# Libft
+LIBFT_PATH	= libft/
+LIBFT_NAME	= libft.a
+LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
+
 # Includes
 INC = -I ./includes/\
       -I ./libft/\
@@ -17,20 +23,27 @@ INC = -I ./includes/\
 # Sources
 
 SRC_PATH = src/
-SRC = fractol.c utils.c
+SRC = main.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 
 # Objects
 OBJ_PATH = obj/
-OBJ = $(SRC:.C=.O)
+OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 
 all: $(MLX) $(LIBFT) $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
+$(OBJS): $(OBJ_PATH)
+
+$(OBJ_PATH):
+	@mkdir $(OBJ_PATH)
+	@mkdir $(OBJ_PATH)fractal_sets/
+	@mkdir $(OBJ_PATH)color_schemes/
 
 $(MLX):
 	@echo "Compiling Minilibx..."
@@ -39,7 +52,7 @@ $(MLX):
 
 $(LIBFT):
 	@echo "Compiling libft..."
-	@make -sC $(LLIBFT_PATH)
+	@make -sC $(LIBFT_PATH)
 	@echo "-------------- ✅ Libft Compiled ✅ -------------"
 
 $(NAME): $(OBJS)
