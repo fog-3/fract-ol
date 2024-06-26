@@ -22,7 +22,8 @@ INC = -I ./includes/\
 # Sources
 
 SRC_PATH = src/
-SRC = main.c
+SRC = fractol.c fractals.c hooks.c utils.c help.c
+#SRC = main.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
