@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:20:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/04/26 20:12:42 by fernando         ###   ########.fr       */
+/*   Updated: 2024/08/30 12:20:22 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_fractol
 {
     void    *mlx;
     void    *win;
-    t_img    *img;
+    t_img    img;
     int     (*form)(t_cn, t_cn);
     double  range;
     t_cn    middle;
@@ -60,6 +60,7 @@ void    print_controls(void);
 void    help_msg(t_fractol *f);
 t_cn    ft_complex(t_fractol *f, int  x, int  y);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	render(t_fractol *f);
 
 //Fractals
 int mandelbrot(t_cn c, t_cn args);

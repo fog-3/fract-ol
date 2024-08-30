@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:24:39 by fernando          #+#    #+#             */
-/*   Updated: 2024/04/26 20:08:45 by fernando         ###   ########.fr       */
+/*   Updated: 2024/08/30 12:22:35 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int end_fractol(t_fractol *f)
 int   ft_key_hook(int keycode, t_fractol *f)
 {
     if (keycode == KEY_C)
-        f->colors *= 1.01;
+        f->colors *= 1.001;
     if (keycode == KEY_ESC)
         end_fractol(f);
     if (keycode == KEY_W || keycode == KEY_UP)
@@ -37,5 +37,6 @@ int   ft_key_hook(int keycode, t_fractol *f)
         f->julia.a += 0.01;
         f->julia.b -= 0.01;
     }
+    render(f);
     return (0);
 }

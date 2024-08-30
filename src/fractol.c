@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:02:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/05/04 19:48:22 by fernando         ###   ########.fr       */
+/*   Updated: 2024/08/30 12:16:36 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	render(t_fractol *f)
 	t_cn c;
 
 	y = 0;
+	(void)f;
 	while (y < HEIGHT)
 	{
 		x = 0;
@@ -27,18 +28,16 @@ void	render(t_fractol *f)
 		{
 			c = ft_complex(f, x, y);
 			iter = f->form(c, f->julia);
-			my_mlx_pixel_put(f->img, x, y, iter * f->colors);
+			my_mlx_pixel_put(&f->img, x, y, iter * f->colors);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(f->mlx, f->win, f->img->img, 0, 0);
+	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
 }
 
-void clean_init(t_fractol *f)
+void clean_init(t_fractol *f, t_img *img)
 {
-	char *buf;
-
 	f = malloc(sizeof(t_fractol));
 	if (!f)
 	{
@@ -52,17 +51,10 @@ void clean_init(t_fractol *f)
 		ft_putendl_fd("Error in the initialization of the window", 2);
 		clean_exit(-1, f);
 	}
-	f->img = malloc(sizeof(t_img));
-	if (!f->img)
-	{
-		ft_putendl_fd("Memory allocation error", 2);
-		clean_exit(-1, f);
-	}
-	f->img->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
-	buf = mlx_get_data_addr(f->img->img, &f->img->bits_per_pixel, &f->img->line_length, &f->img->endian);
-	f->img->addr = buf;
+	img->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	f->range = 2.5;
-	f->colors = 65468784;
+	f->colors = 0x0000FF;
 	f->mx = 0;
 	f->my = 0;
 }
@@ -114,16 +106,25 @@ void draw_rect(t_img *img, int b, int h, int x, int y, int color)
 int main(int argc, char *argv[])
 {
 	t_fractol f;
+	t_img img;
 	if (argc < 2 || (argv[1][0] != '1' && argv[1][0] != '2' && argv[1][0] != '1' &&
 		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j'))
 		help_msg(NULL);
-	clean_init(&f);
+	//clean_init(&f, &img);
 	ft_args(&f, argc, argv);
-	//render(&f);
-	draw_rect(f.img, 100, 50, 0, 0, 0xFFFFFF);
+	f.mlx = mlx_init();
+	f.win = mlx_new_window(f.mlx, WIDTH, HEIGHT, "Fract'ol");
+	img.img = mlx_new_image(f.mlx, 900, 900);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	f.range = 2.75;
+	f.colors = 0x3e5f8a;
+	f.mx = 0;
+	f.my = 0;
+	f.img = img;
+	render(&f);
 	print_controls();
-	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
 	mlx_key_hook(f.win, ft_key_hook, &f);
+	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
 	//mlx_mouse_hook(f.win, mouse_hook, &f);
 	mlx_loop(f.mlx);
 	return (0);

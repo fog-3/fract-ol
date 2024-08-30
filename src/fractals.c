@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 19:06:41 by fernando          #+#    #+#             */
-/*   Updated: 2024/04/26 19:19:43 by fernando         ###   ########.fr       */
+/*   Updated: 2024/08/28 22:45:51 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int mandelbrot(t_cn c, t_cn args)
     while (i < MAX_ITERATIONS && z2.a + z2.b < 4)
     {
         z.b = 2 * z.a * z.b + c.b;
-        z.b = z2.a - z2.b + c.a;
+        z.a = z2.a - z2.b + c.a;
         z2.a = z.a * z.a;
         z2.b = z.b * z.b;
         i++;
