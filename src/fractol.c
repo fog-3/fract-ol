@@ -36,7 +36,7 @@ void	render(t_fractol *f)
 	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
 }
 
-void clean_init(t_fractol *f, t_img *img)
+/* void clean_init(t_fractol *f, t_img *img)
 {
 	f = malloc(sizeof(t_fractol));
 	if (!f)
@@ -57,7 +57,7 @@ void clean_init(t_fractol *f, t_img *img)
 	f->colors = 0x0000FF;
 	f->mx = 0;
 	f->my = 0;
-}
+} */
 
 void ft_args(t_fractol *f, int argc, char *argv[])
 {
@@ -72,17 +72,17 @@ void ft_args(t_fractol *f, int argc, char *argv[])
 		f->middle = (t_cn){-1, 0};
 		f->form = burningship;
 	} */
-	else if (argv[1][0] == '2' || argv[1][0] == 'j')
+	else if (argv[1][0] == '2' || argv[1][0] == 'j' || argv[1][0] == 'J')
 	{
 		f->middle = (t_cn){0, 0};
 		f->form = julia;
 		f->julia = (t_cn){-0.85, 0.2};
 		//-0.4, 0.6
 		f->range = 2.2;
-		/* if (argc >= 4)
+		if (argc >= 4)
 			f->julia = (t_cn){ft_atof(argv[2]), ft_atof(argv[3])};
 		else if (argc == 3)
-			help_msg(f); */
+			help_msg(f);
 	}
 }
 
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 	//clean_init(&f, &img);
 	f.mlx = mlx_init();
 	f.win = mlx_new_window(f.mlx, WIDTH, HEIGHT, "Fract'ol");
-	img.img = mlx_new_image(f.mlx, 900, 900);
+	img.img = mlx_new_image(f.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	f.range = 2.75;
 	f.colors = 0x3e5f8a;
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 	print_controls();
 	mlx_key_hook(f.win, ft_key_hook, &f);
 	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
-	//mlx_mouse_hook(f.win, mouse_hook, &f);
+	mlx_mouse_hook(f.win, mouse_hook, &f);
 	mlx_loop(f.mlx);
 	return (0);
 }

@@ -33,10 +33,32 @@ void    clean_exit(int n, t_fractol *f)
 	exit(n);
 }
 
-/* double  ft_atof(char *str)
+double  ft_atof(char *str)
 {
-    
-} */
+    int     i;
+    double  ret;
+    double  n_deci;
+
+    i = 0;
+    while(str[i] && str[i] != '.')
+        i++;
+    if (!str[i])
+    {
+        ret = (double)ft_atoi(str);
+        return (ret);
+    }
+    str[i] = '\0';
+    ret = (double)ft_atoi(str);
+    n_deci = (double)ft_atoi(&str[i + 1]);
+    while (n_deci > 1)
+        n_deci /= 10;
+    while (str[++i] == '0')
+        n_deci /= 10;
+    if (str[0] == '-')
+        return (ret - n_deci);
+    return (ret + n_deci);
+
+}
 
 void my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {

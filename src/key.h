@@ -26,11 +26,11 @@
 # define KEY_C 99 //Para hacer el shifting de los colores
 # define KEY_N 110 //Para cambiar la variable multiplicativa del valor real de Julia
 # define KEY_M 109 //Para cambiar la variable multiplicativa del valor imaginario de Julia
-# define MOUSE_UP 4 //Para ampliar el fractal
+# define MOUSE_UP 4 //Para ampliar el fractal 
 # define MOUSE_DOWN 5 //Para quitar zoom
-# define MOUSE_WHEEL_BTN 3
-# define MOUSE_BTN_1 1
-# define MOUSE_BTN_2 2
+# define MOUSE_WHEEL_BTN 3 //Boton de la rueda
+# define MOUSE_BTN_1 1 //Click izquierdo
+# define MOUSE_BTN_2 2 //Click derecho
 
 
 #endif

@@ -41,7 +41,27 @@ int   ft_key_hook(int keycode, t_fractol *f)
     return (0);
 }
 
-// int     mouse_hook(int keycode, int x, int y, t_fractol *f)
-// {
-    
-// }
+int mouse_hook(int keycode, int x, int y, t_fractol *f)
+{
+    t_fractol	*vars;
+	t_cn	p2;
+
+	(void)x;
+    (void)y;
+	vars = (t_fractol *)f;
+	p2 = ft_complex(vars, x, y);
+	if (keycode == 4)
+	{
+		vars->middle = (t_cn){(vars->middle.a + p2.a) / 2,
+			(vars->middle.b + p2.b) / 2};
+		vars->range *= 0.5;
+	}
+	else if (keycode == 5)
+	{
+		vars->middle = (t_cn){2 * vars->middle.a - p2.a,
+			2 * vars->middle.b - p2.b};
+		vars->range *= 2;
+	}
+	render(vars);
+    return (0);
+}

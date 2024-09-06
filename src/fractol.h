@@ -20,8 +20,8 @@
 # include <stdio.h>
 
 /* Dimensions */
-# define WIDTH 900
-# define HEIGHT 900
+# define WIDTH 1200
+# define HEIGHT 1200
 # define MAX_ITERATIONS 100
 
 typedef struct s_cn
@@ -54,13 +54,14 @@ typedef struct s_fractol
 
 int     end_fractol(t_fractol *f);
 int     ft_key_hook(int keycode, t_fractol *f);
-//int     mouse_hook(int keycode, int x, int y, t_fractol *f);
+int     mouse_hook(int keycode, int x, int y, t_fractol *f);
 void    clean_exit(int n, t_fractol *f);
 void    print_controls(void);
 void    help_msg(t_fractol *f);
 t_cn    ft_complex(t_fractol *f, int  x, int  y);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	render(t_fractol *f);
+double  ft_atof(char *str);
 
 //Fractals
 int mandelbrot(t_cn c, t_cn args);
