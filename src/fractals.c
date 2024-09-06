@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 19:06:41 by fernando          #+#    #+#             */
-/*   Updated: 2024/08/28 22:45:51 by fernando         ###   ########.fr       */
+/*   Updated: 2024/08/30 12:22:27 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,27 @@ int mandelbrot(t_cn c, t_cn args)
     if (i == MAX_ITERATIONS)
         return (0);
     return (i);
+}
+
+int	julia(t_cn c, t_cn args)
+{
+	t_cn	z2;
+	int		i;
+	t_cn	z;
+
+	z2.a = c.a * c.a;
+	z2.b = c.b * c.b;
+	z = args;
+	i = 0;
+	while (i < MAX_ITERATIONS && z2.a + z2.b < 4)
+	{
+		c.b = 2 * c.a * c.b + z.b;
+		c.a = z2.a - z2.b + z.a;
+		z2.a = c.a * c.a;
+		z2.b = c.b * c.b;
+		i++;
+	}
+	if (i == MAX_ITERATIONS)
+		return (0);
+	return (i);
 }

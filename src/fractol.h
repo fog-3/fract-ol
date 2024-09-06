@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:20:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/08/30 12:20:22 by fernando         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:26:08 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	render(t_fractol *f);
 
 //Fractals
 int mandelbrot(t_cn c, t_cn args);
-/* int burningship(t_cn c, t_cn args);
-int julia(t_cn z, t_cn args); */
+/* int burningship(t_cn c, t_cn args);*/
+int julia(t_cn c, t_cn args);
 
 #endif

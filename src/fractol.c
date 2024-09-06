@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:02:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/08/30 12:16:36 by fernando         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:26:20 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,37 +71,20 @@ void ft_args(t_fractol *f, int argc, char *argv[])
 	{
 		f->middle = (t_cn){-1, 0};
 		f->form = burningship;
-	}
+	} */
 	else if (argv[1][0] == '2' || argv[1][0] == 'j')
 	{
-		f->middle = (t_cn){-1, 0};
+		f->middle = (t_cn){0, 0};
 		f->form = julia;
 		f->julia = (t_cn){-0.85, 0.2};
-		if (argc >= 4)
+		//-0.4, 0.6
+		f->range = 2.2;
+		/* if (argc >= 4)
 			f->julia = (t_cn){ft_atof(argv[2]), ft_atof(argv[3])};
 		else if (argc == 3)
-			help_msg(f);
-	} */
+			help_msg(f); */
+	}
 }
-
-void draw_rect(t_img *img, int b, int h, int x, int y, int color)
-{
-    int base = 0;
-    int altura = 0;
-    while (base < b)
-    {
-        my_mlx_pixel_put(img, x + base, y, color);
-        my_mlx_pixel_put(img, x + base, y + h, color);
-        base++;
-    }
-    while (altura < h)
-    {
-        my_mlx_pixel_put(img, x, y + altura, color);
-        my_mlx_pixel_put(img, x + b, y + altura, color);
-        altura++;
-    }
-}
-
 
 int main(int argc, char *argv[])
 {
@@ -111,7 +94,6 @@ int main(int argc, char *argv[])
 		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j'))
 		help_msg(NULL);
 	//clean_init(&f, &img);
-	ft_args(&f, argc, argv);
 	f.mlx = mlx_init();
 	f.win = mlx_new_window(f.mlx, WIDTH, HEIGHT, "Fract'ol");
 	img.img = mlx_new_image(f.mlx, 900, 900);
@@ -121,6 +103,7 @@ int main(int argc, char *argv[])
 	f.mx = 0;
 	f.my = 0;
 	f.img = img;
+	ft_args(&f, argc, argv);
 	render(&f);
 	print_controls();
 	mlx_key_hook(f.win, ft_key_hook, &f);
