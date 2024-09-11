@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:02:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/06 10:26:20 by fernando         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:22:39 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void ft_args(t_fractol *f, int argc, char *argv[])
 		f->middle = (t_cn){-1, 0};
 		f->form = mandelbrot;
 	}
-	/* else if (argc == 2 && argv[1][0] == '3')
+	else if (argc == 2 && argv[1][0] == '3')
 	{
-		f->middle = (t_cn){-1, 0};
-		f->form = burningship;
-	} */
+		f->middle = (t_cn){0, 0};
+		f->form = phoenix;
+	}
 	else if (argv[1][0] == '2' || argv[1][0] == 'j' || argv[1][0] == 'J')
 	{
 		f->middle = (t_cn){0, 0};
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 	t_fractol f;
 	t_img img;
 	if (argc < 2 || (argv[1][0] != '1' && argv[1][0] != '2' && argv[1][0] != '1' &&
-		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j'))
+		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j' && argv[1][0] != '3'))
 		help_msg(NULL);
 	//clean_init(&f, &img);
 	f.mlx = mlx_init();
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 	ft_args(&f, argc, argv);
 	render(&f);
 	print_controls();
-	mlx_key_hook(f.win, ft_key_hook, &f);
+	mlx_hook(f.win, 2, 1L<<0, ft_key_hook, &f);
 	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
 	mlx_mouse_hook(f.win, mouse_hook, &f);
 	mlx_loop(f.mlx);

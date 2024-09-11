@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:20:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/06 10:26:08 by fernando         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:34:37 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 /* Dimensions */
 # define WIDTH 1200
-# define HEIGHT 1200
+# define HEIGHT 1000
 # define MAX_ITERATIONS 100
 
 typedef struct s_cn
@@ -65,7 +65,7 @@ double  ft_atof(char *str);
 
 //Fractals
 int mandelbrot(t_cn c, t_cn args);
-/* int burningship(t_cn c, t_cn args);*/
+int phoenix(t_cn c, t_cn args);
 int julia(t_cn c, t_cn args);
 
 #endif
