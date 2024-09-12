@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:20:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/11 09:34:37 by fernando         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:08:34 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 
 /* Dimensions */
-# define WIDTH 1200
+# define WIDTH 1000
 # define HEIGHT 1000
 # define MAX_ITERATIONS 100
 
@@ -59,13 +59,14 @@ void    clean_exit(int n, t_fractol *f);
 void    print_controls(void);
 void    help_msg(t_fractol *f);
 t_cn    ft_complex(t_fractol *f, int  x, int  y);
-void my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void    my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	render(t_fractol *f);
 double  ft_atof(char *str);
+void    help_msg2(t_fractol *f);
 
 //Fractals
 int mandelbrot(t_cn c, t_cn args);
-int phoenix(t_cn c, t_cn args);
+int burningship(t_cn c, t_cn args);
 int julia(t_cn c, t_cn args);
 
 #endif

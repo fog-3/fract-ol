@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:02:55 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/11 17:22:39 by fernando         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:08:41 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,6 @@ void	render(t_fractol *f)
 	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
 }
 
-/* void clean_init(t_fractol *f, t_img *img)
-{
-	f = malloc(sizeof(t_fractol));
-	if (!f)
-	{
-		ft_putendl_fd("Memory allocation error", 2);
-		exit(-1);
-	}
-	f->mlx = mlx_init();
-	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, "FRACT'OL");
-	if (!f->win)
-	{
-		ft_putendl_fd("Error in the initialization of the window", 2);
-		clean_exit(-1, f);
-	}
-	img->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	f->range = 2.5;
-	f->colors = 0x0000FF;
-	f->mx = 0;
-	f->my = 0;
-} */
-
 void ft_args(t_fractol *f, int argc, char *argv[])
 {
 	if (argc == 2 && (argv[1][0] == '1' || argv[1][0] == 'M' ||
@@ -69,20 +46,20 @@ void ft_args(t_fractol *f, int argc, char *argv[])
 	}
 	else if (argc == 2 && argv[1][0] == '3')
 	{
+		f->colors = 0x140301;
 		f->middle = (t_cn){0, 0};
-		f->form = phoenix;
+		f->form = burningship;
 	}
 	else if (argv[1][0] == '2' || argv[1][0] == 'j' || argv[1][0] == 'J')
 	{
-		f->middle = (t_cn){0, 0};
+		f->middle = (t_cn){0.3, 0};
 		f->form = julia;
 		f->julia = (t_cn){-0.85, 0.2};
-		//-0.4, 0.6
-		f->range = 2.2;
-		if (argc >= 4)
+		f->range = 2.5;
+		if (argc == 4)
 			f->julia = (t_cn){ft_atof(argv[2]), ft_atof(argv[3])};
-		else if (argc == 3)
-			help_msg(f);
+		else if (argc == 3 || argc > 4)
+			help_msg2(f);
 	}
 }
 
@@ -91,15 +68,15 @@ int main(int argc, char *argv[])
 	t_fractol f;
 	t_img img;
 	if (argc < 2 || (argv[1][0] != '1' && argv[1][0] != '2' && argv[1][0] != '1' &&
-		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j' && argv[1][0] != '3'))
+		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j' && argv[1][0] != '3'
+		&& argv[1][0] != 'J'))
 		help_msg(NULL);
-	//clean_init(&f, &img);
 	f.mlx = mlx_init();
 	f.win = mlx_new_window(f.mlx, WIDTH, HEIGHT, "Fract'ol");
 	img.img = mlx_new_image(f.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	f.range = 2.75;
-	f.colors = 0x3e5f8a;
+	f.colors = 0x012020;
 	f.mx = 0;
 	f.my = 0;
 	f.img = img;
