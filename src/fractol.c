@@ -14,10 +14,10 @@
 
 void	render(t_fractol *f)
 {
-	int x;
-	int y;
-	int iter;
-	t_cn c;
+	int		x;
+	int		y;
+	int		iter;
+	t_cn	c;
 
 	y = 0;
 	(void)f;
@@ -36,7 +36,7 @@ void	render(t_fractol *f)
 	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
 }
 
-void ft_args(t_fractol *f, int argc, char *argv[])
+void	ft_args(t_fractol *f, int argc, char **argv)
 {
 	if (argc == 2 && (argv[1][0] == '1' || argv[1][0] == 'M' ||
 		argv[1][0] == 'm'))
@@ -52,7 +52,7 @@ void ft_args(t_fractol *f, int argc, char *argv[])
 	}
 	else if (argv[1][0] == '2' || argv[1][0] == 'j' || argv[1][0] == 'J')
 	{
-		f->middle = (t_cn){0.3, 0};
+		f->middle = (t_cn){0, 0};
 		f->form = julia;
 		f->julia = (t_cn){-0.85, 0.2};
 		f->range = 2.5;
@@ -63,18 +63,20 @@ void ft_args(t_fractol *f, int argc, char *argv[])
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
-	t_fractol f;
-	t_img img;
-	if (argc < 2 || (argv[1][0] != '1' && argv[1][0] != '2' && argv[1][0] != '1' &&
-		argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j' && argv[1][0] != '3'
-		&& argv[1][0] != 'J'))
+	t_fractol	f;
+	t_img		img;
+
+	if (argc < 2 || (argv[1][0] != '1' && argv[1][0] != '2' && argv[1][0] != '1'
+		&& argv[1][0] != 'M' && argv[1][0] != 'm' && argv[1][0] != 'j' &&
+		argv[1][0] != '3' && argv[1][0] != 'J'))
 		help_msg(NULL);
 	f.mlx = mlx_init();
 	f.win = mlx_new_window(f.mlx, WIDTH, HEIGHT, "Fract'ol");
 	img.img = mlx_new_image(f.mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+			&img.line_length, &img.endian);
 	f.range = 2.75;
 	f.colors = 0x012020;
 	f.mx = 0;
@@ -83,7 +85,7 @@ int main(int argc, char *argv[])
 	ft_args(&f, argc, argv);
 	render(&f);
 	print_controls();
-	mlx_hook(f.win, 2, 1L<<0, ft_key_hook, &f);
+	mlx_hook(f.win, 2, 1L << 0, ft_key_hook, &f);
 	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
 	mlx_mouse_hook(f.win, mouse_hook, &f);
 	mlx_loop(f.mlx);
