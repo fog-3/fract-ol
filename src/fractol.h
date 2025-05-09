@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:20:08 by fernando          #+#    #+#             */
-/*   Updated: 2024/09/12 11:08:34 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:51:44 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdio.h>
 
 /* Dimensions */
-# define WIDTH 1400
-# define HEIGHT 1400
+# define WIDTH 900
+# define HEIGHT 900
 # define MAX_ITERATIONS 100
 
 typedef struct s_cn

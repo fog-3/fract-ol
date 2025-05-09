@@ -2,3 +2,8 @@ obj/
 .DS_Store
 a.out
 fractol
+libft/*.o
+libft/*.a
+minilibx-linux/test/
+minilibx-linux/*.a
+minilibx-linux/*.gen
