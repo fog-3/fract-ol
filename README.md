@@ -43,7 +43,7 @@ git clone https://github.com/fog-3/fract-ol.git
 cd fract-ol && make  
 ```  
 > [!NOTE]
-> If you are in Linux you need `xorg`, `x11`, and `zlib` libraries
+> If you are on Linux you need `xorg`, `x11`, and `zlib` libraries
 
 ### **Run (Examples)**  
 ```bash  
